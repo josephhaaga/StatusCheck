@@ -3,23 +3,21 @@ import re;
 
 google = 'http://google.com';
 
-def checkGoogleAnalytics(url):
+def check_google_analytics(url):
 	try:
 		r = requests.get(url);
 		# success
-		# print (r.text);
 
 		# Check for Google Analytics tracking code
 		m = re.search('UA-\d+', r.text);
 		if m:
 		    print ("Google Analytics found on "+url);
+		    return True;
 		else:
 			print ("Google Analytics NOT FOUND on "+url);
-	except:
+			return False;
+	except (E):
+		print (E);
 		print ("Problem retrieving "+url);
 
-	print ("\n");
-
-
-checkGoogleAnalytics(google);
-checkGoogleAnalytics("http://joehaaga.xyz");
+	return False;
